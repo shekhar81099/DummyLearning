@@ -1,0 +1,48 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore environment variable files
+.env
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore Python virtual environment directories
+venv/
+__pycache__/
+
+# Ignore compiled files
+*.pyc
+*.class
+
+# Ignore coverage reports
+coverage/
+*.cover
+*.coverage
+*.cov
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.bak
+*.old
+
+# Ignore package manager lock files
+package-lock.json
+yarn.lock
+*/bin/*
+*/obj/*
+**/logs/*
+*/publish/*
