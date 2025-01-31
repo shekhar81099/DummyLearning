@@ -75,11 +75,11 @@ builder.Services.AddSwaggerGen(config =>
     });
 }); // Adds services for generating Swagger/OpenAPI documentation
 
-builder.Services.AddServices();  // Adds services for the SuperHeroService
+builder.Services.AddServices();  // Adds services for the Superheroeservice
 
  
 var app = builder.Build(); // Create the app
-
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); // Enable Cross-Origin Resource Sharing
 app.UseMiddleware<ExceptionMiddleware>(); // Use the ExceptionMiddleware
 
 app.UseMiddleware<SerilogMiddleware>(); // Use the SerilogMiddleware

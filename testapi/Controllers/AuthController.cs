@@ -5,9 +5,8 @@ using testapi.Services;
 
 namespace testapi.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+
+    public class AuthController : BaseController
     {
         private readonly ILogger<SuperHeroController> _logger;
         private readonly IAdminService _adminService;
@@ -43,7 +42,7 @@ namespace testapi.Controllers
             }
             return Ok(_user.Token);
         }
-        
+
 
     }
 }

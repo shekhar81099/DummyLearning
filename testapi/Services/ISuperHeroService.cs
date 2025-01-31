@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace testapi.Services
 {
-    public interface ISuperHeroService
+    public interface ISuperheroeservice
     {
         public Task<List<SuperHero>> GetSuperHeroes();
         public Task<SuperHero> GetSuperHeroById(int id);

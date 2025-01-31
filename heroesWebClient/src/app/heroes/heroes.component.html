@@ -1,0 +1,33 @@
+<p>available heroes list</p>
+
+<mat-list role="list" *ngFor="let hero of heroes">
+  <mat-list-item role="listitem" style=" color: black !important; "
+    >{{ hero.id }} --- {{ hero.firstName }}
+    <button mat-raised-button (click)="viewDetails(hero)">view detail</button>
+  </mat-list-item>
+</mat-list>
+<!-- <ul>
+  <li li *ngFor="let hero of heroes">
+    {{ hero.id }} --- {{ hero.firstName }}
+
+    <button mat-raised-button (click)="viewDetails(hero)">
+      view hero info
+    </button>
+      <mat-divider></mat-divider> -->
+<!--
+    <a
+      mat-button
+      routerLink="/heroesDetails/{{ hero.id }}"
+      routerLinkActive="active"
+      >view hero info with param</a
+    >
+    <a
+      mat-button
+      routerLink="/heroesDetails/{{ hero.id }}"
+      routerLinkActive="active"
+      [queryParams]="hero"
+      >view hero info with query
+      <param name="" value=""
+    /></a>
+  </li>
+</ul> -->

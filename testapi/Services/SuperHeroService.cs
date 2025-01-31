@@ -7,11 +7,11 @@ using testapi.Data;
 
 namespace testapi.Services
 {
-    public class SuperHeroService : ISuperHeroService
+    public class Superheroeservice : ISuperheroeservice
     {
         private readonly DataContext _context;
-        private readonly ILogger<SuperHeroService> _logger;
-        public SuperHeroService(DataContext context, ILogger<SuperHeroService> logger)
+        private readonly ILogger<Superheroeservice> _logger;
+        public Superheroeservice(DataContext context, ILogger<Superheroeservice> logger)
         {
             _context = context;
             _logger = logger;

@@ -6,7 +6,7 @@ namespace testapi.Extensions
     {
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddScoped<ISuperHeroService, SuperHeroService>(); // Adds services for the SuperHeroService
+            services.AddScoped<ISuperheroeservice, Superheroeservice>(); // Adds services for the Superheroeservice
             
             services.AddScoped<ISuperVillainService, SuperVillainService>(); // Adds services for the SuperVillainService
 
