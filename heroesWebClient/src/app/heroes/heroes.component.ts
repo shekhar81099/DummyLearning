@@ -16,11 +16,29 @@ export class heroesComponent implements OnInit {
   route = inject(Router);
   dataService = inject(SharedDataService);
   heroes: any = [
-    { id: 1, firstName: 'Superman' },
-    { id: 2, firstName: 'Batman' },
+    // { id: 1, firstName: 'Superman' },
+    // { id: 2, firstName: 'Batman' },
   ];
   ngOnInit(): void {
-    // this.heroes = this.http.getHeroes();
+    let v1: any = null;
+    this.http.getHeroes().subscribe({
+      next: function(this: heroesComponent, value: any) {
+        console.log(value);
+        this.heroes= value.body;
+      }.bind(this),  // Bind 'this' to the component class
+
+      error: function(err:any ) {  // Bind 'this' for error callback
+        console.error('Error:', err);  // Handle errors
+
+      }.bind(this),
+
+      complete: function() {  // Bind 'this' for complete callback
+        console.log('Request complete');  // Handle completion
+      }.bind(this)
+    });
+
+
+
   }
   viewDetails(hero: any) {
     // console.log(hero);

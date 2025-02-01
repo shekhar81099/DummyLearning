@@ -1,3 +1,16 @@
 <p>Welcome to the app!</p>
 
 <p>some page are here </p>
+<!-- this ng container will not render on UI -->
+<ng-container *ngFor="let item of matchesList">
+  <p>{{item.hero_name}}</p>
+</ng-container>
+<ng-template #myTemplate>
+  <p>This is a hidden toy that only shows when needed!</p>
+</ng-template>
+<!-- To show the template later -->
+<div *ngIf="!matchesList; else myTemplate">Hello!</div>
+
+<p>playground TS</p>
+<button (click)="loadDynamicComponent()">show matches</button>
+<ng-template #matches></ng-template>

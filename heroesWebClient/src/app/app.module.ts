@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,13 +10,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { heroesComponent } from './heroes/heroes.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { VillainsComponent } from './villains/villains.component';
 import { HeroesDetailComponent } from './heroes-detail/heroes-detail.component';
 import { VillainsDetailComponent } from './villains-detail/villains-detail.component';
-import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { AuthService } from './interceptors/auth.service';
+import { MatchesComponent } from './matches/matches.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +39,8 @@ import { LoginComponent } from './login/login.component';
     HeroesDetailComponent,
     VillainsDetailComponent,
     LoginComponent,
+    RegisterComponent,
+    MatchesComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,10 +49,18 @@ import { LoginComponent } from './login/login.component';
     MatToolbarModule,
     MatButtonModule,
     HttpClientModule,
-    MatListModule
-
+    MatListModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
   ],
-  providers: [provideAnimationsAsync(), HttpClient, provideHttpClient()],
+  providers: [
+    provideAnimationsAsync(),
+    provideHttpClient(),
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,51 @@
+.match-details {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.match-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.match-id {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #4CAF50;
+}
+
+.hero, .villain, .ground {
+  margin-bottom: 20px;
+}
+
+.hero h2, .villain h2, .ground h2 {
+  font-size: 20px;
+  color: #3f51b5;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #333;
+}
+
+strong {
+  color: #555;
+}

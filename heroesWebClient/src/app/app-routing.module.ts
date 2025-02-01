@@ -7,10 +7,13 @@ import { VillainsDetailComponent } from './villains-detail/villains-detail.compo
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './guards/auth.guard';
+import { RegisterComponent } from './register/register.component';
+import { deactiveGuard } from './guards/deactive.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent   },
+  { path: '', component: HomeComponent  , canActivate: [authGuard]   },
   { path: 'login', component: LoginComponent    },
+  { path: 'register', component: RegisterComponent  ,canDeactivate: [deactiveGuard]  },
   { path: 'heroes', component: heroesComponent , canActivate: [authGuard]  },
   { path: 'heroesDetails', component: HeroesDetailComponent  , canActivate: [authGuard] },
   { path: 'villains', component: VillainsComponent, canActivate: [authGuard] },

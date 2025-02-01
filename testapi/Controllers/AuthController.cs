@@ -40,7 +40,7 @@ namespace testapi.Controllers
             {
                 return Unauthorized();
             }
-            return Ok(_user.Token);
+            return Ok(_user);
         }
 
 

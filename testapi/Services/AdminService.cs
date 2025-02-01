@@ -33,7 +33,7 @@ namespace testapi.Services
             UserLogin userLogin = new UserLogin()
             {
                 Username = user.Username,
-                Token = $"Bearer {GenerateJWTToken(user)}"
+                Token = GenerateJWTToken(user)
             };
             return userLogin;
         }

@@ -1,0 +1,31 @@
+<p>matches works!</p>
+<p>
+  this match view expire in {{expireInSec}}
+</p>
+
+<div class="match-details">
+  <h1>Match Details</h1>
+
+  <div class="match-card">
+    <div class="match-info">
+      <div class="match-id">Match ID: {{ data.match_id }}</div>
+
+      <div class="hero">
+        <h2>Hero:</h2>
+        <p><strong>Name:</strong> {{ data.hero_name }}</p>
+        <p><strong>Location:</strong> {{ data.hero_location }}</p>
+      </div>
+
+      <div class="villain">
+        <h2>Villain:</h2>
+        <p><strong>Name:</strong> {{ data.villain_name }}</p>
+        <p><strong>Location:</strong> {{ data.villain_location }}</p>
+      </div>
+
+      <div class="ground">
+        <h2>Match Location:</h2>
+        <p><strong>Ground:</strong> {{ data.ground }}</p>
+      </div>
+    </div>
+  </div>
+</div>

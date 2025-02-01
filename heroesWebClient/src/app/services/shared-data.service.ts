@@ -4,14 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SharedDataService {
-  private data: any = {};
+
   constructor() {}
 
   setData(key: string, value: any) {
-    this.data[key] = value;
+    sessionStorage.setItem(key , JSON.stringify(value))
+
   }
 
   getData(key: string) {
-    return this.data[key];
+    const storedUser = sessionStorage.getItem(key);
+    return  storedUser ? JSON.parse(storedUser) : null;
+
   }
 }
