@@ -3,7 +3,7 @@ using Serilog;
 
 namespace testapi.Middleware
 {
-    public class ExceptionMiddleware
+    public class ExceptionMiddleware  
     {
         private readonly RequestDelegate _next;
         private readonly Serilog.ILogger _logger;
@@ -35,5 +35,10 @@ namespace testapi.Middleware
                 }));
             }
         }
+
+        // public Task InvokeAsync(HttpContext context, RequestDelegate next)
+        // {
+        //     throw new NotImplementedException();
+        // }
     }
 }

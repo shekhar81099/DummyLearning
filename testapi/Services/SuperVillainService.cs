@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using testapi.Data;
+using testapi.Helper;
 
 namespace testapi.Services
 {
@@ -10,6 +11,7 @@ namespace testapi.Services
 
         public SuperVillainService(DataContext context, ILogger<SuperVillainService> logger)
         {
+            "this SuperVillainService instance Created".Print();
             _context = context;
             _logger = logger;
         }

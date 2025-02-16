@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using testapi.Data;
 using testapi.Helper;
 
 namespace testapi.Services
 {
-    public class Superheroeservice : ISuperheroeservice
+    public class Superheroeservice2 : ISuperheroeservice
     {
         private readonly DataContext _context;
-        private readonly ILogger<Superheroeservice> _logger;
-        public Superheroeservice(DataContext context, ILogger<Superheroeservice> logger)
+        private readonly ILogger<Superheroeservice2> _logger;
+        public Superheroeservice2(DataContext context, ILogger<Superheroeservice2> logger)
         {
-            "this Superheroeservice instance Created".Print();
+            "this Superheroeservice2 instance Created".Print();
             _context = context;
             _logger = logger;
 
@@ -53,7 +49,7 @@ namespace testapi.Services
         public async Task<SuperHero> GetSuperHeroById(int id)
         {
             var superHero = await _context.SuperHeroes.FindAsync(id);
-            _logger.LogInformation($"SuperHero found by id: {id}");
+            _logger.LogInformation($"SuperHero found by id: {id}");  
             if (superHero == null)
             {
                 return null;
@@ -65,7 +61,7 @@ namespace testapi.Services
         {
             try
             {
-                return _context.SuperHeroes.ToList();
+                return   _context.SuperHeroes.ToList();
 
             }
             catch (Exception ex)

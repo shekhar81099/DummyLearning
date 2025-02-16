@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using testapi.Data;
 using testapi.DTO;
+using testapi.Helper;
 
 namespace testapi.Services
 {
@@ -15,6 +16,7 @@ namespace testapi.Services
         private readonly IConfiguration _config;
         public AdminService(DataContext context, IConfiguration config)
         {
+            "this AdminService instance Created".Print();
             _context = context;
             _config = config;
         }

@@ -5,28 +5,33 @@ using testapi.Services;
 
 namespace testapi.Controllers
 {
-  
-     // Protect all actions in the controller
+
+    // Protect all actions in the controller
     public class SuperHeroController : BaseController
     {
         private readonly ILogger<SuperHeroController> _logger;
         private readonly ISuperheroeservice _superheroeservice;
-        public SuperHeroController(ISuperheroeservice superheroeservice, ILogger<SuperHeroController> logger)
+        // public SuperHeroController(Func<string, ISuperheroeservice> superheroeservice, ILogger<SuperHeroController> logger)
+        // {
+        //     _superheroeservice = superheroeservice("Superheroeservice");
+        //     _logger = logger;
+
+        // }
+        public SuperHeroController(Func<string, ISuperheroeservice> superheroeservice, ILogger<SuperHeroController> logger)
         {
-            _superheroeservice = superheroeservice;
+            _superheroeservice = superheroeservice("Superheroeservice");
             _logger = logger;
 
         }
-
         // [AdminOnlyFilter] // Protect the action
         [HttpGet("GetSuperHeroes")]
         public async Task<ActionResult<List<SuperHero>>> GetSuperHeroes()
         {
             _logger.LogInformation("Getting SuperHeroes");
-                
-                // throw new Exception("An error occurred"); // Throws an exception test code
 
-            return Ok( await _superheroeservice.GetSuperHeroes());
+            // throw new Exception("An error occurred"); // Throws an exception test code
+
+            return Ok(await _superheroeservice.GetSuperHeroes());
         }
 
         [HttpGet("GetSuperHeroById/{id}")]
@@ -35,7 +40,7 @@ namespace testapi.Controllers
             var superHero = await _superheroeservice.GetSuperHeroById(id);
 
             if (superHero == null)
-            { 
+            {
                 return NotFound("SuperHero not found");
             }
             return Ok(superHero);
@@ -50,7 +55,7 @@ namespace testapi.Controllers
         [HttpPut("UpdateSuperHero")]
         public async Task<ActionResult<SuperHero>> UpdateSuperHero(int id, SuperHero superHero)
         {
-            var superHeroToUpdate =await _superheroeservice.UpdateSuperHero(id, superHero);
+            var superHeroToUpdate = await _superheroeservice.UpdateSuperHero(id, superHero);
 
             if (superHeroToUpdate == null)
             {

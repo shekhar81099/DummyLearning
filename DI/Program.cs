@@ -4,6 +4,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        OppsTest oppsTest = new OppsTest();
+         
         // Console.WriteLine("Hello, World!");
         // DILogic logger = new DILogic();
         // logger.AbstractClass();
@@ -16,8 +18,8 @@ internal class Program
         // AsyncProgram.Test();
 
         // UserIPTaskAsyncProgram.Test();
-        SealedClassExample sealedClassExample = new SealedClassExample();
-        SealedClassExample.Test();
+        // SealedClassExample sealedClassExample = new SealedClassExample();
+        // SealedClassExample.Test();
     }
 }
 

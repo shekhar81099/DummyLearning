@@ -10,8 +10,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using testapi.Filters;
+using testapi.Helper;
 var builder = WebApplication.CreateBuilder(args);
 
+"this code is to print ".Print();
 
 // builder.Logging.ClearProviders(); // Clears the default logging providers
 // builder.Logging.AddConsole(); // Adds a console logging provider
@@ -45,7 +47,8 @@ builder.Services.AddAuthentication(x =>
 });
 
 
-builder.Services.AddControllers( option => {
+builder.Services.AddControllers(option =>
+{
     option.Filters.Add<CustomActionFilter>(); // Adds the CustomActionFilter to the controllers
 });  // Adds controllers for handling requests
 
@@ -77,11 +80,16 @@ builder.Services.AddSwaggerGen(config =>
 
 builder.Services.AddServices();  // Adds services for the Superheroeservice
 
- 
+
 var app = builder.Build(); // Create the app
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); // Enable Cross-Origin Resource Sharing
 app.UseMiddleware<ExceptionMiddleware>(); // Use the ExceptionMiddleware
-
+app.Use(async (context, next) =>
+{
+    // inline middleware 
+    Console.WriteLine("custom inline middleware");
+    await next(context);
+});
 app.UseMiddleware<SerilogMiddleware>(); // Use the SerilogMiddleware
 
 // Configure the HTTP request pipeline.
@@ -114,4 +122,4 @@ app.MapControllers();
 
 app.Run();
 
-public partial class Program { } 
+public partial class Program { }
