@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using testapi.Filters;
 using testapi.Helper;
+using Microsoft.AspNetCore.Mvc;
 var builder = WebApplication.CreateBuilder(args);
 
 "this code is to print ".Print();
@@ -46,6 +47,12 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+builder.Services.AddAuthorization(x =>
+{
+    x.AddPolicy("Admin", policy => { policy.RequireRole("Admin"); });
+    x.AddPolicy("CanEditReports", policy => { policy.RequireClaim("CanEditReports", "true"); });
+    x.AddPolicy("MustBeHR", policy => policy.RequireClaim("Department", "HR"));
+});
 
 builder.Services.AddControllers(option =>
 {
@@ -79,7 +86,16 @@ builder.Services.AddSwaggerGen(config =>
 }); // Adds services for generating Swagger/OpenAPI documentation
 
 builder.Services.AddServices();  // Adds services for the Superheroeservice
-
+builder.Services.AddMemoryCache();
+builder.Services.AddResponseCaching();
+builder.Services.AddApiVersioning(
+    option =>
+    {
+        option.ReportApiVersions = true;
+        option.AssumeDefaultVersionWhenUnspecified = true;
+        option.DefaultApiVersion = new ApiVersion(1, 0);
+    }
+);
 
 var app = builder.Build(); // Create the app
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); // Enable Cross-Origin Resource Sharing
@@ -108,14 +124,14 @@ if (app.Environment.IsDevelopment()) // If the environment is development
 //     await next(); // Passes the request to the next middleware
 //     WriteLine($"Response: {context.Response.StatusCode}");
 // });
-
+app.UseResponseCaching();
 app.UseRouting(); // Enable route matching
 
 app.UseHttpsRedirection(); // Redirects HTTP requests to HTTPS
 
 app.UseAuthentication();
 
-app.UseAuthorization();
+
 
 app.MapControllers();
 

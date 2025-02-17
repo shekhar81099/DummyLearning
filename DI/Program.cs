@@ -2,9 +2,11 @@
 
 internal class Program
 {
+    
     private static void Main(string[] args)
     {
-        OppsTest oppsTest = new OppsTest();
+        // OppsTest oppsTest = new OppsTest();
+        DelegateExample oppsTest = new DelegateExample();
          
         // Console.WriteLine("Hello, World!");
         // DILogic logger = new DILogic();

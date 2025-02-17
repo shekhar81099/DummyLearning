@@ -58,7 +58,7 @@ namespace DI
 
     public class UsingPropertyDI
     {
-        public ILoggerDI Logger { get; set; } // Dependency injected via property
+        public ILoggerDI? Logger { get; set; } // Dependency injected via property
 
         public void DoWork()
         {
@@ -86,11 +86,11 @@ namespace DI
         public abstract void Speak1(); // Abstract method
         public void Eat1() => Console.WriteLine("This animal eats food."); // Non-abstract method
     }
-    public class Dog : Animal,    ILoggerDI, ILoggerDI1
+    public class Dog : Animal, ILoggerDI, ILoggerDI1
     {
         public void Log(string message)
         {
-           Console.WriteLine($"{message} hello");
+            Console.WriteLine($"{message} hello");
         }
 
         public override void Speak()
@@ -137,7 +137,7 @@ namespace DI
             dog.Name = "Dog";
             dog.Speak();
             dog.Eat();
-            ILoggerDI dog1 = new Dog(); 
+            ILoggerDI dog1 = new Dog();
             dog1.Log("hello");
 
             Animal cat = new Cat();

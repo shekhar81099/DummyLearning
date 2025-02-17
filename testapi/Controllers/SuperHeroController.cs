@@ -7,6 +7,8 @@ namespace testapi.Controllers
 {
 
     // Protect all actions in the controller
+    [ApiVersion("1")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class SuperHeroController : BaseController
     {
         private readonly ILogger<SuperHeroController> _logger;

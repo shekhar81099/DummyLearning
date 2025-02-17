@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using testapi.Data;
 
@@ -10,9 +11,11 @@ using testapi.Data;
 namespace testapi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250217133603_newtable")]
+    partial class newtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,17 +65,21 @@ namespace testapi.Migrations
 
             modelBuilder.Entity("testapi.Models.SuperHero", b =>
                 {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -80,9 +87,7 @@ namespace testapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Name");
-
-                    b.HasIndex("Name");
+                    b.HasKey("Id");
 
                     b.ToTable("SuperHeroes");
                 });
@@ -95,15 +100,15 @@ namespace testapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("SuperHeroName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("SuperHeroId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SuperPowerName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SuperHeroName");
+                    b.HasIndex("SuperHeroId");
 
                     b.ToTable("SuperPower");
                 });
@@ -118,23 +123,21 @@ namespace testapi.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Place")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name", "FirstName", "LastName", "Place");
 
                     b.ToTable("SuperVillains");
                 });
@@ -174,9 +177,13 @@ namespace testapi.Migrations
 
             modelBuilder.Entity("testapi.Models.SuperPower", b =>
                 {
-                    b.HasOne("testapi.Models.SuperHero", null)
+                    b.HasOne("testapi.Models.SuperHero", "SuperHero")
                         .WithMany("SuperPowers")
-                        .HasForeignKey("SuperHeroName");
+                        .HasForeignKey("SuperHeroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SuperHero");
                 });
 
             modelBuilder.Entity("testapi.Models.Author", b =>

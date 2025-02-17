@@ -46,3 +46,4 @@ yarn.lock
 */obj/*
 **/logs/*
 */publish/*
+EF_Core_Tool
