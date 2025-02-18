@@ -1,13 +1,15 @@
 ﻿using DI;
+using DI.Programs;
 
 internal class Program
 {
-    
+
     private static void Main(string[] args)
     {
+        ExecutePrograms.RunPrograms();
         // OppsTest oppsTest = new OppsTest();
-        DelegateExample oppsTest = new DelegateExample();
-         
+        // DelegateExample oppsTest = new DelegateExample();
+
         // Console.WriteLine("Hello, World!");
         // DILogic logger = new DILogic();
         // logger.AbstractClass();

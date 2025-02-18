@@ -1,11 +1,11 @@
 namespace DI
 {
-    
+
     public static class GenericExtensions
     {
-        public static T Print<T>(this T value, string s= "")
+        public static T Print<T>(this T value, string s = "")
         {
-            Console.WriteLine($"{s} : {value}");
+            Console.WriteLine(s != "" ? $"{s} : {value}" : value);
             return value;
         }
 
@@ -17,7 +17,7 @@ namespace DI
         {
             foreach (var item in collection)
             {
-                Console.WriteLine(item);
+                Console.Write($"\"{item}\" \t ");
             }
         }
     }

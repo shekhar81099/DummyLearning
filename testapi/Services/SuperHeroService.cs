@@ -113,7 +113,7 @@ namespace testapi.Services
                     svId = b.Id,
                     svFirstName = b.FirstName,
                     svSuperPowers = (string)null,
-                })
+                });
                 var p = res.ToList();
                 // var res =await  _context.SuperHeroes.
 
