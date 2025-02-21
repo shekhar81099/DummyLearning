@@ -26,6 +26,7 @@ namespace testapi.Controllers
         [HttpGet("test1")]
         public async Task<string> Get()
         {
+            // Thread.Sleep(5000);
             await Task.Delay(5000);
             return "OK";
         }
@@ -35,6 +36,7 @@ namespace testapi.Controllers
         [ResponseCache(Duration = 60, VaryByQueryKeys = new[] { "*" })] 
         public async Task<int> Get1()
         {
+            
             // await Task.Delay(5000);
             Random n = new();
             int v = n.Next(555, 999);

@@ -12,7 +12,7 @@ namespace DI.Programs
 
     public static class ExecutePrograms
     {
-        private static readonly IPrograms program = new PrimeNumbers();
+        private static readonly IPrograms program = new MetricsProgram();
         public static void RunPrograms()
         {
             program.execute();
