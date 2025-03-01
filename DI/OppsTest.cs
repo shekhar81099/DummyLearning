@@ -6,7 +6,7 @@ namespace DI
     {
         public OppsTest()
         {
-             
+
             // Creating an Account instance (abstracted via interface)
             IAccount account = new SavingsAccount(5000);
 
@@ -71,6 +71,7 @@ namespace DI
         void Credit(int amt);
         void Debit(int amt);
         int GetBalance();
+        int GetBalance1();
     }
     public class SavingsAccount : Account
     {
@@ -87,6 +88,7 @@ namespace DI
         {
             "Savings account created.".Print();
         }
+        public override int GetBalance1() => 1000;
 
         // You can add additional methods or override base methods if needed
     }
@@ -104,7 +106,12 @@ namespace DI
         public void Credit(int amt) => _balance += amt;
         public void Debit(int amt) => _balance -= amt;
         public int GetBalance() => _balance;
+        public virtual int GetBalance1() => 0;
+
     }
 
-
+    public static class P11
+    {
+        
+    }
 }

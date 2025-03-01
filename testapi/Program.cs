@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using testapi.Filters;
 using testapi.Helper;
 using Microsoft.AspNetCore.Mvc;
+using testapi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 "this code is to print ".Print();
@@ -46,6 +47,11 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
+// builder.Services.AddSingleton<QueueService>();
+
+// builder.Services.AddHostedService<BackgroundSer>();
+
+
 
 builder.Services.AddAuthorization(x =>
 {
@@ -118,12 +124,12 @@ if (app.Environment.IsDevelopment()) // If the environment is development
 }
 
 
-// app.Use(async (context, next) => // Middleware that logs the request and response
-// {
-//     WriteLine($"Request: {context.Request.Method} {context.Request.Path}");
-//     await next(); // Passes the request to the next middleware
-//     WriteLine($"Response: {context.Response.StatusCode}");
-// });
+app.Use(async (context, next) => // Middleware that logs the request and response
+{
+    WriteLine($"Request: {context.Request.Method} {context.Request.Path}");
+    await next(); // Passes the request to the next middleware
+    WriteLine($"Response: {context.Response.StatusCode}");
+});
 app.UseResponseCaching();
 app.UseRouting(); // Enable route matching
 
@@ -134,7 +140,17 @@ app.UseAuthentication();
 
 
 app.MapControllers();
+// var queueService = app.Services.GetRequiredService<QueueService>();
 
+// Task.Run(async () =>
+// {
+//     int counter = 1;
+//     while (true)
+//     {
+//         queueService.AddMessage($"Message {counter++}");
+//         await Task.Delay(3000); // Add a message every 3 seconds
+//     }
+// });
 
 app.Run();
 

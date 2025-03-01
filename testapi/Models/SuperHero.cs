@@ -15,13 +15,15 @@ namespace testapi.Models
         public string LastName { get; set; } = string.Empty;
         public string Place { get; set; } = string.Empty;
 
-        public List<SuperPower>? SuperPowers { get; set; } = null;
+        public virtual List<SuperPower>? SuperPowers { get; set; } = null;
 
     }
     public class SuperPower
     {
         public int Id { get; set; }
         public string? SuperPowerName { get; set; } = string.Empty;
+
+        public virtual SuperHero SuperHero { get; set; } = null;
 
 
     }

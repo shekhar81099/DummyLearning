@@ -91,31 +91,57 @@ namespace testapi.Services
 
                 //    await  GetAuthorsAndBooks();
 
-                var res = from sh in _context.SuperHeroes
-                          join sv in _context.SuperVillains
-                          on sh.Id equals sv.Id
-                          select new
-                          {
-                              shId = sh.Id,
-                              shFirstName = sh.FirstName,
-                              shSuperPowers = sh.SuperPowers,
-                              svId = sv.Id,
-                              svFirstName = sv.FirstName,
-                              svSuperPowers = (string)null,
-                          }
-                 ;
-                res = _context.SuperHeroes.Join(_context.SuperVillains, a => a.Id, b => b.Id, (a, b) =>
-                new
-                {
-                    shId = a.Id,
-                    shFirstName = a.FirstName,
-                    shSuperPowers = a.SuperPowers,
-                    svId = b.Id,
-                    svFirstName = b.FirstName,
-                    svSuperPowers = (string)null,
-                });
-                var p = res.ToList();
+                // var res = from sh in _context.SuperHeroes
+                //           join sv in _context.SuperVillains
+                //           on sh.Id equals sv.Id
+                //           select new
+                //           {
+                //               shId = sh.Id,
+                //               shFirstName = sh.FirstName,
+                //               shSuperPowers = sh.SuperPowers,
+                //               svId = sv.Id,
+                //               svFirstName = sv.FirstName,
+                //               svSuperPowers = (string)null,
+                //           }
+                //  ;
+                // res = _context.SuperHeroes.Join(_context.SuperVillains, a => a.Id, b => b.Id, (a, b) =>
+                // new
+                // {
+                //     shId = a.Id,
+                //     shFirstName = a.FirstName,
+                //     shSuperPowers = a.SuperPowers,
+                //     svId = b.Id,
+                //     svFirstName = b.FirstName,
+                //     svSuperPowers = (string)null,
+                // });
+                // var p = res.ToList();
                 // var res =await  _context.SuperHeroes.
+                // var res = _context.SuperHeroes.Join(_context.SuperVillains, sh => sh.Id, sv => sv.Id, (sh, sv) => new
+                // {
+                //     sid = sh.Id,
+                //     vid = sv.Id,
+                //     heroName = sh.Name,
+                //     VilleinName = sv.Name,
+                // }).ToList();
+
+                var resLeftJoin = _context.SuperHeroes
+                .GroupJoin(
+                    _context.SuperVillains,
+                    hero => hero.Id,
+                    villain => villain.Id,
+                    (hero, villainGroup) => new { hero, villainGroup }
+                )
+                .SelectMany(
+                    x => x.villainGroup.DefaultIfEmpty(),
+                    (a, x) => new { a.villainGroup }
+                // (x, villain) => new
+                // {
+                //     HeroId = x.hero.Id,
+                //     HeroName = x.hero.Name,
+                //     VillainId = villain != null ? villain.Id : (int?)null,
+                //     VillainName = villain != null ? villain.Name : null
+                // }
+                ).ToList();
 
                 return await _context.SuperHeroes.Include(a => a.SuperPowers).ToListAsync(); ;
 

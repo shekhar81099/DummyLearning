@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using testapi.Services;
+using testapi.Services.PaymentGateways;
 
 namespace testapi.Extensions
 {
@@ -12,7 +13,7 @@ namespace testapi.Extensions
 
             services.AddScoped<Superheroeservice>();
             services.AddScoped<Superheroeservice2>();
-            
+
             services.AddScoped<Func<string, ISuperheroeservice>>(provider => Key =>
             {
                 // return provider.GetRequiredService<Superheroeservice>();
@@ -28,6 +29,10 @@ namespace testapi.Extensions
             services.AddScoped<ISuperVillainService, SuperVillainService>(); // Adds services for the SuperVillainService
 
             services.AddScoped<IAdminService, AdminService>(); // Adds services for the AdminService
+
+            services.AddTransient<CardPaymentService>();
+            services.AddTransient<PayPalPaymentService>();
+            services.AddSingleton<PaymentGatewayFactory>();
 
         }
 

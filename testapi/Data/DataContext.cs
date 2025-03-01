@@ -20,7 +20,7 @@ namespace testapi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Blog>().HasMany(a => a.Posts).WithOne(b => b.Blog).HasForeignKey(c => c.BlogId).IsRequired(false);
+            // modelBuilder.Entity<Blog>().HasMany(a => a.Posts).WithOne(b => b.Blog).HasForeignKey(c => c.BlogId).IsRequired(false);
 
             // modelBuilder.Entity<SuperHero>().HasMany(a=> a.)
             // modelBuilder.Entity<SuperHero>().HasIndex(o => o.Name); // single column index

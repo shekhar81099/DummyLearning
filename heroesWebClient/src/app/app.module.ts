@@ -29,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from './interceptors/auth.service';
 import { MatchesComponent } from './matches/matches.component';
+import { XssComponent } from './xss/xss.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { MatchesComponent } from './matches/matches.component';
     LoginComponent,
     RegisterComponent,
     MatchesComponent,
+    XssComponent,
   ],
   imports: [
     BrowserModule,
