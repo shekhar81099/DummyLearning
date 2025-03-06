@@ -164,13 +164,26 @@ namespace testapi.Services
 
                 // await res.Where(p => p.Name == "").ExecuteUpdateAsync(p => p.SetProperty(p => p.Name, p => p.FirstName));
 
+                // using (var con = _context.Database.GetDbConnection())
+                // {
+                //     await con.OpenAsync();
+                //     using (var command = con.CreateCommand())
+                //     {
+                //         command.CommandText = "safsdf";
+                //         command.Parameters.Add()
+                //         command.CommandType = CommandType.Text;
+                //         using (var reader = command.ExecuteNonQuery())
+                //         { 
 
+                //         }
+                //     }
+                // }
                 await _context.SuperHeroes.Where(p => p.Name == "").
                 ExecuteUpdateAsync(p => p.SetProperty(p => p.Name, p => p.FirstName));
 
                 await _context.SaveChangesAsync();
 
-                return await _context.SuperHeroes.ToListAsync(); ;
+                return await _context.SuperHeroes.ToListAsync();
 
             }
             catch (Exception ex)

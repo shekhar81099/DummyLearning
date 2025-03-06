@@ -20,17 +20,23 @@ namespace testapi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Blog1>().ToView("BlogsSummary").HasNoKey();
             // modelBuilder.Entity<Blog>().HasMany(a => a.Posts).WithOne(b => b.Blog).HasForeignKey(c => c.BlogId).IsRequired(false);
 
             // modelBuilder.Entity<SuperHero>().HasMany(a=> a.)
             // modelBuilder.Entity<SuperHero>().HasIndex(o => o.Name); // single column index
 
-            // // modelBuilder.Entity<SuperHero>().HasKey(o => o.Name);
+            // modelBuilder.Entity<SuperHero>().HasKey(o => o.Name);
             // modelBuilder.Entity<Author>().Property(a => a.Name).IsRequired();
             // modelBuilder.Entity<SuperVillains>().HasIndex(o => new { o.Name, o.FirstName, o.LastName, o.Place }); //composite index 
         }
-    }
 
+    }
+    public class Blog1
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 
 
 }
