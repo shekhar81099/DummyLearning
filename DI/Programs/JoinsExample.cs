@@ -5,7 +5,7 @@ namespace DI.Programs
         public void execute()
         {
 
-             
+
 
 
             var employees = new List<Employee>        {
@@ -43,10 +43,31 @@ namespace DI.Programs
 
             (p == p1).Print();
         }
+
+
+        // List<Employee> employees = new List<Employee>
+        //         {
+        //             new Employee { Id = 1, Name = "Alice", Salary = 5000 },
+        //             new Employee { Id = 2, Name = "Bob", Salary = 7000 },
+        //             new Employee { Id = 3, Name = "Charlie", Salary = 6000 },
+        //             new Employee { Id = 4, Name = "David", Salary = 7000 }, // Duplicate max salary
+        //             new Employee { Id = 5, Name = "Eve", Salary = 4000 }
+        //         };
+
+        // var secondHighestSalary = employees.Where(a => a.Salary >= 1000)
+        //     .Select(e => new { Salary = e.Salary, Name = e.Name })
+        //     .Distinct()
+        //     .OrderByDescending(s => s.Salary)
+        //     .Skip(1).FirstOrDefault();
+    }
+    partial class partialEmployee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Salary { get; set; }
     }
 
-
-    class Employee
+    partial class Employee
     {
         public int EmployeeId { get; set; }
         public string Name { get; set; }

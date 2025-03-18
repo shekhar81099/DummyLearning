@@ -17,15 +17,16 @@ namespace DI
     {
         public Test()
         {
+             
             NewStruct p1 = new();
             p1.Name = "Raman";
             p1.Age = 12;
             p1.MyProperty1 = 505;
             p1.MyProperty();
 
-            Res a = Res.bd; 
-            a.Print() ;
-            ((int)a).Print() ;
+            Res a = Res.bd;
+            a.Print();
+            ((int)a).Print();
 
         }
 

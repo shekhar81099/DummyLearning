@@ -12,7 +12,7 @@ namespace DI.Programs
 
     public static class ExecutePrograms
     {
-        private static readonly IPrograms program = new RemoveRepetitiveCharFromString();
+        private static readonly IPrograms program = new cancellationToken();
         public static void RunPrograms()
         {
             program.execute();
