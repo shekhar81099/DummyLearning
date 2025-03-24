@@ -21,7 +21,7 @@ namespace testapi.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(Product product)
         {
-            await _mediator.Send(new AddProductCommand(product));
+            await _mediator.Publish(new AddProductCommand(product));
             return Ok();
         }
 

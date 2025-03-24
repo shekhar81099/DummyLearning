@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +11,42 @@ namespace DI.Programs
     {
         public void execute()
         {
-            MaxThreadCount();
-            // MainMethod11().Wait();
-            object locker = new object();
-            List<int> list = new List<int>();
-            ConcurrentBag<int> bag = new ConcurrentBag<int>();
-            Parallel.For(0, 10, i =>
-            {
-                lock (locker) // ✅ Locks the list
-                {
-                    list.Add(i);
-                }
-                bag.Add(i);
-                // list.Add(i); // ❌ Not Thread-Safe! Can cause issues
-            });
-            // bag.PrintAll();
-            // " ".Print();
-            // list.PrintAll();
-            int processorCount = Environment.ProcessorCount;
-            Console.WriteLine($"Logical Processors: {processorCount}");
 
-            ThreadPool.GetAvailableThreads(out int workerThreads, out int ioThreads);
-            Console.WriteLine($"Worker Threads: {workerThreads}, I/O Threads: {ioThreads}");
+
+
+
+            ICollection<string> fruits = new List<string> { "Apple", "Banana", "Mango" };
+
+            fruits.Add("Orange");
+            fruits.Remove("Banana");
+
+            IList<string> myToys = new string[] { "Car", "Truck", "Bike" };
+            // myToys.Add("test"); 
+            Console.WriteLine(myToys[0]);
+
+
+            // MaxThreadCount();
+            // // MainMethod11().Wait();
+            // object locker = new object();
+            // List<int> list = new List<int>();
+            // ConcurrentBag<int> bag = new ConcurrentBag<int>();
+            // Parallel.For(0, 10, i =>
+            // {
+            //     lock (locker) // ✅ Locks the list
+            //     {
+            //         list.Add(i);
+            //     }
+            //     bag.Add(i);
+            //     // list.Add(i); // ❌ Not Thread-Safe! Can cause issues
+            // });
+            // // bag.PrintAll();
+            // // " ".Print();
+            // // list.PrintAll();
+            // int processorCount = Environment.ProcessorCount;
+            // Console.WriteLine($"Logical Processors: {processorCount}");
+
+            // ThreadPool.GetAvailableThreads(out int workerThreads, out int ioThreads);
+            // Console.WriteLine($"Worker Threads: {workerThreads}, I/O Threads: {ioThreads}");
 
             // list.Sort();
             // Parallel.ForEach(list, l =>
@@ -72,7 +87,7 @@ namespace DI.Programs
             Console.WriteLine("Task completed!");
         }
 
-        public void  MaxThreadCount()
+        public void MaxThreadCount()
         {
             // {
             //     int count = 0;

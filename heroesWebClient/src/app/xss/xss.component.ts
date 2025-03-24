@@ -10,10 +10,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class XssComponent {
   userInput: string = `<div style="color:red"> Test </div><button onclick="alert('XSS Attack Blocked!')">Click Me</button>`;
-  safeHTML: SafeHtml;
+  // safeHTML: SafeHtml;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.userInput);
+    // this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.userInput);
 
   }
 }

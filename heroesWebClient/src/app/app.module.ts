@@ -30,6 +30,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthService } from './interceptors/auth.service';
 import { MatchesComponent } from './matches/matches.component';
 import { XssComponent } from './xss/xss.component';
+import { HighliterDirective } from './directive/highliter.directive';
+import { customComp } from './customComp/heroescopy/heroescopy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,8 @@ import { XssComponent } from './xss/xss.component';
     RegisterComponent,
     MatchesComponent,
     XssComponent,
+    customComp,
+    HighliterDirective,
   ],
   imports: [
     BrowserModule,
